@@ -1,0 +1,56 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#	new file:   .gitignore
+#	new file:   .prettierrc
+#	new file:   .travis.yml
+#	new file:   README.md
+#	new file:   package-lock.json
+#	new file:   package.json
+#	new file:   public/favicon.ico
+#	new file:   public/index.html
+#	new file:   public/manifest.json
+#	new file:   src/components/Account/index.js
+#	new file:   src/components/Admin/index.js
+#	new file:   src/components/App/index.js
+#	new file:   src/components/Classroom/App.css
+#	new file:   src/components/Classroom/App.js
+#	new file:   src/components/Classroom/Duration.js
+#	new file:   src/components/Classroom/defaults.css
+#	new file:   src/components/Classroom/index.js
+#	new file:   src/components/Classroom/range.css
+#	new file:   src/components/Classroom/reset.css
+#	new file:   src/components/Firebase/context.js
+#	new file:   src/components/Firebase/firebase.js
+#	new file:   src/components/Firebase/index.js
+#	new file:   src/components/Home/index.js
+#	new file:   src/components/Landing/index.js
+#	new file:   src/components/Messages/MessageItem.js
+#	new file:   src/components/Messages/MessageList.js
+#	new file:   src/components/Messages/Messages.js
+#	new file:   src/components/Messages/index.js
+#	new file:   src/components/Navigation/index.js
+#	new file:   src/components/PasswordChange/index.js
+#	new file:   src/components/PasswordForget/index.js
+#	new file:   src/components/Session/context.js
+#	new file:   src/components/Session/index.js
+#	new file:   src/components/Session/withAuthentication.js
+#	new file:   src/components/Session/withAuthorization.js
+#	new file:   src/components/Session/withEmailVerification.js
+#	new file:   src/components/SignIn/index.js
+#	new file:   src/components/SignOut/index.js
+#	new file:   src/components/SignUp/index.js
+#	new file:   src/components/Users/UserItem.js
+#	new file:   src/components/Users/UserList.js
+#	new file:   src/components/Users/index.js
+#	new file:   src/constants/roles.js
+#	new file:   src/constants/routes.js
+#	new file:   src/index.css
+#	new file:   src/index.js
+#	new file:   src/serviceWorker.js
+#
