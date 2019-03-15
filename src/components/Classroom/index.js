@@ -131,12 +131,6 @@ class App extends Component {
       </button>
     )
   }
-  // this.props.firebase.messages().add({
-  //   text: this.state.text,
-  //   userId: authUser.uid,
-  //   createdAt: this.props.firebase.fieldValue.serverTimestamp(),
-  // });
-
 
   confirm = (event, authUser) => {
     console.log('authUser: ', authUser)

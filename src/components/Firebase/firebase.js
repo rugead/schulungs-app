@@ -9,12 +9,6 @@ const config = {
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  // apiKey: "AIzaSyBHLG0cYjkvi1rMP6V7SBkBKJsWiUySXzo",
-  // authDomain: "muenzel-hygiene-app.firebaseapp.com",
-  // databaseURL: "https://muenzel-hygiene-app.firebaseio.com",
-  // projectId: "muenzel-hygiene-app",
-  // storageBucket: "muenzel-hygiene-app.appspot.com",
-  // messagingSenderId: "325373461333"
 };
 
 
