@@ -1,35 +1,10 @@
-$column-width: 480px;
-$gutter-width: 20px;
-
-.app {
-  margin: auto;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  text-align: center;
-}
-
-.section {
-  display: inline-block;
-  max-width: $column-width;
-  margin: $gutter-width;
-  text-align: left;
-  vertical-align: top;
-}
-
 .player-wrapper {
-  width: 480px;
-  height: 270px;
+  position: relative;
+  padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
 }
 
 .react-player {
-  margin-bottom: 10px;
-  background: rgba(0, 0, 0, .1);
-}
-
-.faded {
-  color: rgba(0, 0, 0, .5);
-}
-
-.footer {
-  margin: $gutter-width;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

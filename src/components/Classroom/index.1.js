@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
-import { hot } from 'react-hot-loader'
 import screenfull from 'screenfull'
 
-import './reset.css'
-import './defaults.css'
-import './range.css'
+// import '~video-react/dist/video-react.css'; // import css
+import { AuthUserContext } from '../Session';
+import { compose } from 'recompose'
+import { withAuthorization, withEmailVerification } from '../Session'
+import { withFirebase } from '../Firebase'
+
+// import './range.css'
 import './App.css'
 
-import { version } from '../../package.json'
-import ReactPlayer from '../ReactPlayer'
+import ReactPlayer from 'react-player'
 import Duration from './Duration'
 
 const MULTIPLE_SOURCES = [
@@ -31,14 +33,18 @@ class App extends Component {
     loaded: 0,
     duration: 0,
     playbackRate: 1.0,
-    loop: false
+    loop: false,
+    viewed: true,
+    label: ''
   }
-  load = url => {
+  load = (url, label) => {
     this.setState({
       url,
       played: 0,
       loaded: 0,
-      pip: false
+      pip: false,
+      viewed: true,
+      label: label,
     })
   }
   playPause = () => {
@@ -108,6 +114,7 @@ class App extends Component {
   onEnded = () => {
     console.log('onEnded')
     this.setState({ playing: this.state.loop })
+    this.setState({ viewed: !this.state.viewed })
   }
   onDuration = (duration) => {
     console.log('onDuration', duration)
@@ -118,19 +125,36 @@ class App extends Component {
   }
   renderLoadButton = (url, label) => {
     return (
-      <button onClick={() => this.load(url)}>
+      <button onClick={() => this.load(url, label)}>
         {label}
       </button>
     )
+  }
+
+  confirm = (event, authUser) => {
+    console.log('authUser: ', authUser)
+    this.props.firebase.lessons().add({
+      url: this.state.url,
+      titel: this.state.label,
+      personalnummer: authUser.personalnummer,
+      username: authUser.username,
+      userId: authUser.uid,
+      createdAt: this.props.firebase.fieldValue.serverTimestamp(),
+    });
+
+    event.preventDefault();
   }
   ref = player => {
     this.player = player
   }
   render () {
-    const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state
+    const { url, playing, viewed, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state
     const SEPARATOR = ' · '
 
     return (
+      <AuthUserContext.Consumer>
+      {authUser => (
+
       <div className='app'>
         <section className='section'>
           <h1>ReactPlayer Demo</h1>
@@ -179,6 +203,7 @@ class App extends Component {
             <tr>
               <th>Speed</th>
               <td>
+                <button onClick={ event =>  this.confirm(event, authUser)} /*disabled={viewed ? 'disabled' : ''} */type="submit"> fff {viewed ? 'true' : 'false'} Ende </button>
                 <button onClick={this.setPlaybackRate} value={1}>1x</button>
                 <button onClick={this.setPlaybackRate} value={1.5}>1.5x</button>
                 <button onClick={this.setPlaybackRate} value={2}>2x</button>
@@ -244,8 +269,8 @@ class App extends Component {
               <td><progress max={1} value={loaded} /></td>
             </tr>
           </tbody></table>
-        </section>
-        <section className='section'>
+          </section>
+          <section className='section'>
           <table><tbody>
             <tr>
               <th>YouTube</th>
@@ -371,17 +396,24 @@ class App extends Component {
               <td><Duration seconds={duration * (1 - played)} /></td>
             </tr>
           </tbody></table>
-        </section>
+          </section>
         <footer className='footer'>
-          Version <strong>{version}</strong>
           {SEPARATOR}
           <a href='https://github.com/CookPete/react-player'>GitHub</a>
           {SEPARATOR}
           <a href='https://www.npmjs.com/package/react-player'>npm</a>
         </footer>
       </div>
+      )}
+      </AuthUserContext.Consumer>
     )
   }
 }
 
-export default hot(module)(App)
+const condition = authUser => !!authUser;
+
+export default compose(
+  withFirebase,
+  withEmailVerification,
+  withAuthorization(condition),
+)(App);

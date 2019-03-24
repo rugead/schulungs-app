@@ -4,6 +4,16 @@ import { compose } from 'recompose';
 import { withAuthorization, withEmailVerification } from '../Session';
 import { withFirebase } from '../Firebase';
 import Messages from '../Messages';
+import VideoPlayer from '../Classroom';
+ 
+const videoJsOptions = {
+  autoplay: true,
+  controls: true,
+  sources: [{
+    src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
+    type: 'video/mp4'
+  }]
+}
 
 class HomePage extends Component {
   constructor(props) {
@@ -35,8 +45,8 @@ class HomePage extends Component {
     return (
       <div>
         <h1>Home Page</h1>
-        <p>The Home Page is accessible by every signed in user.</p>
-
+        <p> classnameThe Home Page is accessible by every signed in user.</p>
+        <VideoPlayer { ...videoJsOptions } />
         <Messages users={this.state.users} />
       </div>
     );

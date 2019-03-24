@@ -10,6 +10,17 @@ import { withFirebase } from '../Firebase';
 import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
 
+import VideoPlayer from '../Classroom';
+
+const videoJsOptions = {
+  autoplay: true,
+  controls: true,
+  sources: [{
+    src: 'https://baeckerei-muenzel.de/wp-content/uploads/Guglhupf_Video.mp4',
+    type: 'video/mp4'
+  }]
+}
+
 const SIGN_IN_METHODS = [
   {
     id: 'password',
@@ -33,6 +44,8 @@ const AccountPage = () => (
   <AuthUserContext.Consumer>
     {authUser => (
       <div>
+        <VideoPlayer { ...videoJsOptions } authUser={authUser} />
+
         <h1>Account: {authUser.email}</h1>
         <PasswordForgetForm />
         <PasswordChangeForm />
