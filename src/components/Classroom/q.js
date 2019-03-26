@@ -1,51 +1,45 @@
-// import Messages from './Messages';
+import React from 'react';
+import videojs from 'video.js'
 
-import React, { Component } from 'react';
-import { AuthUserContext } from '../Session';
-import { VideoPlayer } from './xx.js';
-// import { compose } from 'recompose'
-// import { withAuthorization, withEmailVerification } from '../Session'
-// import { withFirebase } from '../Firebase'
+export default class VideoPlayer extends React.Component {
+  componentDidMount() {
+    this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
+      console.log("TCL: VideoPlayer -> this.props", this)
+    });
+    console.log("videoNode", this.videoNode)
 
-const videoJsOptions = {
-  autoplay: true,
-  controls: true,
-  sources: [{
-    src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
-    type: 'video/mp4'
-  }]
+  //   this.player.on('playing', function() {
+	// 		console.log("TCL: VideoPlayer -> componentDidMount -> 'ended'", 'currentTime')
+  //   });
+
+    
+  //   var lengthOfVideo = videojs(this.videoNode.duration, function xxx() {
+
+  //     };
+  //   });
+  var myPlayer = videojs(this.videoNode)
+  
+  myPlayer.on('ended', function() {
+        console.log('lengthOfVideo');
+
+    // this.dispose();
+  });
+  
 }
 
-export default class PlayerControlExample extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      viewed: true,
-      label: '',
+  componentWillUnmount() {
+    if (this.player) {
+      this.player.dispose()
     }
   }
-  
+
   render() {
     return (
-      <AuthUserContext.Consumer>
-        {authUser => (
-        <div> 
-          <VideoPlayer { ...videoJsOptions } />
-            {authUser.username}
-          </div>
-        )}
-      </AuthUserContext.Consumer>
-
+      <div>    
+        <div data-vjs-player>
+          <video ref={ node => this.videoNode = node } className="video-js"></video>
+        </div>
+      </div>
     )
   }
 }
-
-// const condition = authUser => !!authUser;
-
-// export default compose(
-  // withFirebase,
-  // withEmailVerification,
-  // withAuthorization(condition),
-// )(PlayerControlExample);
-// import Messages from './Messages';

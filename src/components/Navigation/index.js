@@ -23,14 +23,14 @@ const NavigationAuth = ({ authUser }) => (
     <div className="navbar-start">
       <div className="navbar-item has-dropdown is-hoverable">
           <Link className="navbar-link" to='#'>Schulungen</Link>
-          <div className="navbar-dropdown">
-            <Link className="navbar-item" to={ROUTES.CLASSROOM}>
+          <div className="navbar-dropdown is-hoverable">
+            <Link className="navbar-item is-hoverable" to={ROUTES.CLASSROOM}>
               Hygiene-Schulung
             </Link>
-            <Link className="navbar-item" to={ROUTES.HOME}>
+            <Link className="navbar-item is-hoverable" to={ROUTES.HOME}>
               Home
             </Link>
-            <Link className="navbar-item" to={ROUTES.ACCOUNT}>
+            <Link className="navbar-item is-hoverable" to={ROUTES.ACCOUNT}>
               Benutzerkonto
             </Link>
           </div>
