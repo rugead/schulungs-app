@@ -751,7 +751,13 @@ body.vjs-full-window {
   background-color: #000;
   background-color: rgba(0, 0, 0, 0.8); }
 
+/* +++++++++++++++++ hide seeker  +++++++++++++   */
+/* +++++++++++++++++ hide seeker  +++++++++++++   */
+/* +++++++++++++++++ hide seeker  +++++++++++++   */
+/* +++++++++++++++++ hide seeker  +++++++++++++   */
 .video-js .vjs-slider {
+  /* display: none;  */
+  /* hide seeker */
   position: relative;
   cursor: pointer;
   padding: 0;

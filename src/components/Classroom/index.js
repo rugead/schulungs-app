@@ -1,19 +1,13 @@
 import React from 'react';
-// import videojs from 'video.js'
-
-import { AuthUserContext } from '../Session';
 import { compose } from 'recompose'
-import { withAuthorization, withEmailVerification } from '../Session'
 import { withFirebase } from '../Firebase'
-// import videojs from 'video.js'
-
-import VideoPlayer from './q.js'
-
+import { withAuthorization, withEmailVerification } from '../Session'
+import { AuthUserContext } from '../Session';
+import VideoPlayer from './VideoPlayer.js'
 import './video-js.css'
 
-
 const videoJsOptions = {
-  autoplay: true,
+  autoplay: false,
   controls: true,
   fluid: true,
   sources: [{
@@ -22,51 +16,52 @@ const videoJsOptions = {
   }]
 }
 
-// const videoName = 
-
 class HygieneVideo extends React.Component {
-  state = {
-    
-  }
-  
-  componentDidMount() {
-    console.log('kk', this.props)
-    // this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
-    //   console.log("TCL: VideoPlayer -> this.props", this)
-    // });
 
-	// 	console.log("TCL: HygieneVideo -> componentDidMount -> this.props", this.props)
+  constructor(props) {
+    super(props);
+    this.state = {
+      disabled: true,
+    };
   }
-  
-  // componentWillUnmount() {
-  //   if (this.player) {
-  //     this.player.dispose()
-  //   }
-  // }
-  
-  confirmWatched(e, authUser) {
+    
+  confirmWatched = (ev, props) => {
+    const url = props.sources[0].src
+    const title = url.substr(url.lastIndexOf('/') + 1);
+    
     this.props.firebase.lessons().add({
-      url: 'this.state.url',
-      titel: 'this.state.label',
-      source: videoJsOptions.sources.src,
-      personalnummer: authUser.personalnummer,
-      username: authUser.username,
-      userId: authUser.uid,
+      url: url,
+      titel: title,
+      source: props.sources,
+      personalnummer: props.authUser.personalnummer,
+      username: props.authUser.username,
+      userId: props.authUser.uid,
       createdAt: this.props.firebase.fieldValue.serverTimestamp(),
     });
-  
-    e.preventDefault();
+
+    ev.preventDefault();
+  }
+
+  handleDisabled = () => {
+    this.setState({disabled: false})
   }
 
   render() {
+    const { confirmWatched } = this
+    const { disabled } = this.state
+    const { handleDisabled } = this
+
     return (
       <AuthUserContext.Consumer>
       {authUser => (
         <div>
-          <VideoPlayer { ...videoJsOptions } />
-          <form onSubmit={e => this.confirmWatched(e, authUser)}>
-            <button type="submit" >confirm</button> 
-          </form>
+          <VideoPlayer
+            { ...videoJsOptions }
+            confirmWatched={confirmWatched }
+            authUser={authUser}
+            disabled={disabled}
+            handleDisabled={handleDisabled}
+          />
         </div>
         )}
     </AuthUserContext.Consumer>    )}
