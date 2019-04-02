@@ -5,6 +5,9 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
+
+import { Input, Label, Control, Help, Field, Button } from 'rbx';
+
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
@@ -106,53 +109,103 @@ class SignUpFormBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="personalnummer"
-          value={personalnummer}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Personalnummer"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <label>
-          Admin:
-          <input
-            name="isAdmin"
-            type="checkbox"
-            checked={isAdmin}
-            onChange={this.onChangeCheckbox}
-          />
-        </label>
-        <button disabled={isInvalid} type="submit">
+        
+        <Field>
+          <Label>Label</Label>
+          <Control>
+            <Input
+              name="username"
+              value={username}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Name"
+              autoComplete="on"
+            />
+          </Control>
+          <Help>This is a help text</Help>
+        </Field>
+        
+
+        <Field>
+          <Label>Label</Label>
+          <Control>
+            <Input
+              name="personalnummer"
+              value={personalnummer}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Personalnummer"
+              autoComplete="on"
+            />
+          </Control>
+          <Help>This is a help text</Help>
+        </Field>
+
+
+        <Field>
+          <Label>Label</Label>
+          <Control>
+            <Input
+              name="email"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Email Adresse"
+              autoComplete="on"
+            />
+          </Control>
+          <Help>This is a help text</Help>
+        </Field>
+
+        <Field>
+          <Label>Label</Label>
+          <Control>
+
+            <Input
+              name="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Passwort"
+              autoComplete="on"
+            />
+          </Control>
+          <Help>This is a help text</Help>
+        </Field>
+
+
+        <Field>
+          <Label>Label</Label>
+          <Control>
+            <Input
+              name="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Passwortbestätigung"
+              autoComplete="on"
+            />
+          </Control>
+          <Help>This is a help text</Help>
+        </Field>
+        
+        <Field>
+          <Label>Label</Label>
+          <Control>
+            <Input
+              name="isAdmin"
+              type="checkbox"
+              checked={isAdmin}
+              onChange={this.onChangeCheckbox}
+              autoComplete="on"
+            />
+          </Control>
+          <Help>This is a help text</Help>
+        </Field>
+
+        <Button disabled={isInvalid} type="submit">
           Sign Up
-        </button>
+        </Button>
 
         {error && <p>{error.message}</p>}
       </form>

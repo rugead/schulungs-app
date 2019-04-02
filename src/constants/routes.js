@@ -8,3 +8,5 @@ export const ADMIN = '/admin';
 export const ADMIN_DETAILS = '/admin/:id';
 export const CLASSROOM = '/classroom';
 export const LESSONS = '/lessons';
+export const DATENSCHUTZ = '/datenschutz';
+export const IMPRESSUM = '/impressum';

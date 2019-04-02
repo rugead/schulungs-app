@@ -11,28 +11,42 @@ import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import ClassroomPage from '../Classroom';
-import LessonsPage from '../Lessons'
-import { ReactComponent as Logo } from './logo.svg';
+import LessonsPage from '../Lessons';
+import DatenschutzPage from '../Datenschutz';
+import ImpressumPage from '../Impressum';
+
+import logo from './logo.jpg';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
+import { Content, Container, Navbar, Button } from 'rbx';
+
+// function Logo() {
+//   // Import result is the URL of your image
+//   return <img src={logo} alt="Logo" />;
+// }
 
 const App = () => (
   <Router>
     <div className="main">
       <header>
-        <nav className="navbar" role="navigation" aria-label="main navigation">
-          <div className="navbar-brand">
-            <Link className="navbar-item ssss" to={ROUTES.LANDING}>
-              <Logo height="90" />
-            </Link>
-          </div>    
-          <Navigation />
-        </nav>  
+        <Container>
+          <Navbar>
+            <Navbar.Brand>
+              <Navbar.Item as={Link} to={ROUTES.HOME}>
+                <img
+                  src={logo}
+                  alt="Logo Bäckerei Münzel"
+                />
+              </Navbar.Item>
+              <Navbar.Burger></Navbar.Burger>
+            </Navbar.Brand>
+            <Navigation />
+          </Navbar>
+        </Container>
       </header>
-
-      <section className="section">
-        <div className="container">
+      <Content>
+        <Container>
           <Route exact path={ROUTES.LANDING} component={LandingPage} />
           <Route path={ROUTES.CLASSROOM} component={ClassroomPage} />
           <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
@@ -42,9 +56,18 @@ const App = () => (
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
           <Route path={ROUTES.LESSONS} component={LessonsPage} />
-        </div>
-      </section>
-      <footer>Impressum Datenschutz</footer>
+          <Route path={ROUTES.IMPRESSUM} component={ImpressumPage} />
+          <Route path={ROUTES.DATENSCHUTZ} component={DatenschutzPage} />
+        </Container>
+      </Content>
+      <Content>
+        <Container>
+          <footer>
+            <Button as={Link} to={ROUTES.DATENSCHUTZ} >Datenschutz</Button>
+            <Button as={Link} to={ROUTES.IMPRESSUM} >Impressum</Button>
+          </footer>
+          </Container>
+      </Content>
     </div>
   </Router>
 );

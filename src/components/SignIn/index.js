@@ -7,6 +7,9 @@ import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
+
+import { Input, Button } from 'rbx';
+
 const INITIAL_STATE = {
   email: '',
   password: '',
@@ -50,13 +53,14 @@ class SignInFormBase extends Component {
         <div className="field">
           <label className="label">Name</label>
           <div className="control">
-            <input
+            <Input
               name="email"
               value={email}
               onChange={this.onChange}
               type="text"
               placeholder="Email Address"
               className="input"
+              autoComplete="on"
             />
           </div>
         </div>
@@ -64,19 +68,19 @@ class SignInFormBase extends Component {
         <div className="field">
           <label className="label">Name</label>
           <div className="control">
-            <input
+            <Input
               name="password"
               value={password}
               onChange={this.onChange}
               type="password"
               placeholder="Password"
-              className="inputn"
+              autoComplete="on"
             />
           </div>
         </div>
         <div className="field is-grouped">
           <div className="control">
-            <button disabled={isInvalid} className="button is-link">Submit</button>
+            <Button disabled={isInvalid}>Submit</Button>
           </div>
         </div>
 

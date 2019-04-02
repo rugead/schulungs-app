@@ -5,15 +5,15 @@ export default class VideoPlayer extends React.Component {
   componentDidMount() {
     this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
     });
-  }
-  
-  componentDidUpdate() {
     const handleDisabled = () => this.props.handleDisabled()
     const myPlayer = videojs(this.videoNode)
-
+  
     myPlayer.on('ended', function() {
       handleDisabled()
     });   
+  }
+  
+  componentDidUpdate() {
   }
 
   componentWillUnmount() {

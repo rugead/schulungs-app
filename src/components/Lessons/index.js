@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-
-import { withFirebase } from '../Firebase';
-// import * as ROUTES from '../../constants/routes';
-
+import { compose } from 'recompose'
+import { withFirebase } from '../Firebase'
+import { withAuthorization, withEmailVerification } from '../Session'
+import { AuthUserContext } from '../Session';
+ 
 class LessonsList extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       loading: false,
       lessons: [],
+      authUser: null
     };
   }
-
+  
   componentDidMount() {
     this.setState({ loading: true });
+    console.log('props: ', this.props);
+    // const userId = this.props.firebase.auth
+    console.log('userId: ', this.state.authUser);
 
     this.unsubscribe = this.props.firebase
-      .lessons()
+      .lessons().where('personalnummer', '==',  '1111')
       .onSnapshot(snapshot => {
         let lessons = [];
 
@@ -32,6 +36,9 @@ class LessonsList extends Component {
         });
       });
   }
+  xxx = (authUser) => {
+    this.setState({authUser: authUser})
+  }
 
   componentWillUnmount() {
     this.unsubscribe();
@@ -39,11 +46,16 @@ class LessonsList extends Component {
 
   render() {
     const { lessons, loading } = this.state;
-
+   
+    const { xxx } = this
     return (
+      <AuthUserContext.Consumer>
+      {authUser => (
+     
       <div>
         <h2>Lessons</h2>
         {loading && <div>Loading ...</div>}
+        { xxx(authUser) }
         <ul>
           {lessons.map(lesson => (
             <li key={lesson.uid}>
@@ -69,8 +81,19 @@ class LessonsList extends Component {
           ))}
         </ul>
       </div>
+      )}
+      </AuthUserContext.Consumer>
     );
   }
 }
 
-export default withFirebase(LessonsList);
+
+const condition = authUser => !!authUser;
+
+// export default withFirebase(LessonsList);
+
+export default compose(
+  withFirebase,
+  withEmailVerification,
+  withAuthorization(condition),
+)(LessonsList);

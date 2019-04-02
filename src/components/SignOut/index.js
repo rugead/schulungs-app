@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
 import { withFirebase } from '../Firebase';
+import { Navbar } from 'rbx';
 
 const SignOutButton = ({ firebase }) => (
-  <Link to={'/'} onClick={firebase.doSignOut} className="navbar-item">
-    abmelden
-  </Link>
+  <Navbar.Item onClick={firebase.doSignOut}>Sign Out</Navbar.Item>
 );
 
 export default withFirebase(SignOutButton);

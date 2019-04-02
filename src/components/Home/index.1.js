@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
+
+import { withAuthorization, withEmailVerification } from '../Session';
 import { withFirebase } from '../Firebase';
-import {
-  AuthUserContext,
-  withAuthorization,
-  withEmailVerification,
-} from '../Session';
+import Messages from '../Messages';
 
 class HomePage extends Component {
   constructor(props) {
@@ -35,15 +33,11 @@ class HomePage extends Component {
 
   render() {
     return (
-      <AuthUserContext.Consumer>
-        {authUser => (
-          <div>
-            <h1>Willkommen {authUser.username} </h1>
-            <p>das ist die Schulungs-App der Bäckerei Münzel.</p>
-          </div>
-
-        )}
-      </AuthUserContext.Consumer>
+      <div>
+        <h1>Aktuelle Mitteilungen</h1>
+        <p> classnameThe Home Page is accessible by every signed in user.</p>
+        <Messages users={this.state.users} />
+      </div>
     );
   }
 }
