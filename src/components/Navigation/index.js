@@ -21,30 +21,36 @@ const Navigation = () => (
   </AuthUserContext.Consumer>
 );
 
-const NavigationAuth = () => (
+const NavigationAuth = ({ authUser }) => (
   <Navbar.Menu>
-    <Navbar.Segment align="start">
-      <Navbar.Item as={Link} to={ROUTES.HOME}>Home</Navbar.Item>
-      <Navbar.Item as={Link} to={ROUTES.CLASSROOM}>Schulungen
-      </Navbar.Item>
-    </Navbar.Segment>
-    
     <Navbar.Segment align="end">
-      <SignOutButton />
+      <Navbar.Item dropdown>
+        <Navbar.Link>{ authUser.username}<br />Konto & Schulungen</Navbar.Link>
+        <Navbar.Dropdown>
+          <Navbar.Item as={Link} to={ROUTES.HOME}>Home</Navbar.Item>
+          <Navbar.Item as={Link} to={ROUTES.CLASSROOM}>Schulungen</Navbar.Item>
+          <Navbar.Divider></Navbar.Divider>
+          <Navbar.Item as={Link} to={ROUTES.ACCOUNT}>Account</Navbar.Item>
+          <Navbar.Divider></Navbar.Divider>
+          <SignOutButton />
+        </Navbar.Dropdown>
+      </Navbar.Item>
     </Navbar.Segment>
   </Navbar.Menu>
 
 );
 
 const NavigationNonAuth = () => (
+  <Navbar.Menu>
   <Navbar.Segment align="end">
-    <Navbar.Item color="primary" as={Link} to={ROUTES.SIGN_UP}>
+    <Navbar.Item as={Link} to={ROUTES.SIGN_UP}>
       Sign up
     </Navbar.Item>
-    <Navbar.Item color="light" as={Link} to={ROUTES.SIGN_IN}>
+    <Navbar.Item as={Link} to={ROUTES.SIGN_IN}>
       Log In
     </Navbar.Item>
   </Navbar.Segment>
+  </Navbar.Menu>
 );
 
 export default Navigation;

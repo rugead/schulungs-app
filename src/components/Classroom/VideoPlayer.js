@@ -1,6 +1,7 @@
 import React from 'react';
 import videojs from 'video.js'
-
+// import { Column } from 'rbx';
+import { Column, Field, Label, Control, Checkbox, Button, Box } from 'rbx'
 export default class VideoPlayer extends React.Component {
   componentDidMount() {
     this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
@@ -24,47 +25,48 @@ export default class VideoPlayer extends React.Component {
 
   render() {
     return (
-
-      <div> 
-        <article className="media">
-          <div className="media-content">
+      <Column.Group>
+        <Column>
             <div data-vjs-player>
               <video ref={ node => this.videoNode = node } className="video-js"></video>
             </div>
-          </div>
-        </article>
-        <div className="field">
+        </Column>
+        <Column>
+        <Box>
           <form onSubmit={ev => this.props.confirmWatched(ev, this.props)} >
-          <div className="field">
-              <div className="control">
-                <label className="primary" >
-                    Bitte sehen Sie sich das Schulungsvideo Aufmerksam bis zu Ende an. Sobald das Video zu Ende ist können Sie dies bestätigen.
-                </label>
-              </div>
-            </div>
-            <div className="field">
-              <div className="control">
-                <label className="checkbox" disabled={this.props.disabled} >
-                  <input 
-                    className="checkbox" type="checkbox" 
+            <Field>
+              <Control>
+                <Label>
+                    Bitte sehen Sie sich das Schulungsvideo Aufmerksam und bis zu Ende an. 
+                    Sobald das Video zu Ende ist können Sie dies durch anhaken bestätigen. 
+                    Durch anklicken des Buttons "gesehen" wird die Bestätigung an uns gesendet.
+                </Label>
+              </Control>
+            </Field>
+            <Field>
+              <Control>
+                <Label disabled={this.props.disabled} >
+                  <Checkbox  
                     disabled={this.props.disabled} 
                     required
                     // onInvalid={this.setCustomValidity('Please Enter valid email')}
                     // onInput={setCustomValidity('')}
                     />
-                  Hiermit bestätige das ich das Schulungsvideo gesehen habe.
-                </label>
-              </div>
-            </div>
-            <div className="field">
-              <div className="control">
+
+                  Hiermit bestätige ich, dass ich das Schulungsvideo gesehen und verstanden habe.
+                </Label>
+              </Control>
+
+              <Control>
               {/* {console.log(this.props)} */}
-                <button className="button" type="submit" disabled={this.props.disabled}>gesehen</button>
-              </div>
-            </div>
+                <Button color="success" type="submit" disabled={this.props.disabled}>gesehen</Button>
+              </Control>
+            
+            </Field>
           </form>
-        </div>
-      </div>
+        </Box>
+        </Column>
+        </Column.Group>
     )
   }
 }

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import Navigation from '../Navigation';
-import LandingPage from '../Landing';
+// import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import PasswordForgetPage from '../PasswordForget';
@@ -19,7 +19,7 @@ import logo from './logo.jpg';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
-import { Content, Container, Navbar, Button } from 'rbx';
+import { Hero, Container, Navbar, Tab } from 'rbx';
 
 // function Logo() {
 //   // Import result is the URL of your image
@@ -28,7 +28,7 @@ import { Content, Container, Navbar, Button } from 'rbx';
 
 const App = () => (
   <Router>
-    <div className="main">
+    <Hero size="fullheight">
       <header>
         <Container>
           <Navbar>
@@ -45,9 +45,8 @@ const App = () => (
           </Navbar>
         </Container>
       </header>
-      <Content>
         <Container>
-          <Route exact path={ROUTES.LANDING} component={LandingPage} />
+          <Route exact path={ROUTES.LANDING} component={SignInPage} />
           <Route path={ROUTES.CLASSROOM} component={ClassroomPage} />
           <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
           <Route path={ROUTES.SIGN_IN} component={SignInPage} />
@@ -59,16 +58,15 @@ const App = () => (
           <Route path={ROUTES.IMPRESSUM} component={ImpressumPage} />
           <Route path={ROUTES.DATENSCHUTZ} component={DatenschutzPage} />
         </Container>
-      </Content>
-      <Content>
-        <Container>
-          <footer>
-            <Button as={Link} to={ROUTES.DATENSCHUTZ} >Datenschutz</Button>
-            <Button as={Link} to={ROUTES.IMPRESSUM} >Impressum</Button>
-          </footer>
-          </Container>
-      </Content>
-    </div>
+      <Hero.Foot>
+          <Container>
+          <Tab.Group as="nav" type="boxed" fullwidth>
+              <Tab as={Link} to={ROUTES.DATENSCHUTZ} >Datenschutz</Tab>
+              <Tab as={Link} to={ROUTES.IMPRESSUM} >Impressum</Tab>
+            </Tab.Group>
+            </Container>
+      </Hero.Foot>
+    </Hero>
   </Router>
 );
 

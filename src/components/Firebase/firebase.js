@@ -25,7 +25,7 @@ class Firebase {
 
     this.auth = app.auth();
     this.db = app.firestore();
-    this.db.settings({ timestampsInSnapshots: true });
+    // this.db.settings({ timestampsInSnapshots: true });
 
     /* Social Sign In Method Provider */
 
