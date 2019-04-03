@@ -6,6 +6,8 @@ import {
   withAuthorization,
   withEmailVerification,
 } from '../Session';
+import { Title } from 'rbx'
+import Lessons from '../Lessons'
 
 class HomePage extends Component {
   constructor(props) {
@@ -38,8 +40,8 @@ class HomePage extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
           <div>
-            <h1>Willkommen {authUser.username} </h1>
-            <p>das ist die Schulungs-App der Bäckerei Münzel.</p>
+            <Title>Willkommen {authUser.username} </Title>
+            <Lessons authUser={authUser} />
           </div>
 
         )}

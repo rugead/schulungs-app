@@ -33,7 +33,7 @@ const App = () => (
         <Container>
           <Navbar>
             <Navbar.Brand>
-              <Navbar.Item as={Link} to={ROUTES.HOME}>
+              <Navbar.Item as={Link} to={ROUTES.LANDING}>
                 <img
                   src={logo}
                   alt="Logo Bäckerei Münzel"
@@ -46,7 +46,7 @@ const App = () => (
         </Container>
       </header>
         <Container>
-          <Route exact path={ROUTES.LANDING} component={SignInPage} />
+          <Route exact path={ROUTES.LANDING} component={SignUpPage} />
           <Route path={ROUTES.CLASSROOM} component={ClassroomPage} />
           <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
           <Route path={ROUTES.SIGN_IN} component={SignInPage} />

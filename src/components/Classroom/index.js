@@ -22,10 +22,11 @@ class HygieneVideo extends React.Component {
     super(props);
     this.state = {
       disabled: true,
+      personalnummer: ''
     };
   }
     
-  confirmWatched = (ev, props) => {
+  confirmWatched = (ev, props, personalnummer) => {
     const url = props.sources[0].src
     const title = url.substr(url.lastIndexOf('/') + 1);
     
@@ -33,7 +34,7 @@ class HygieneVideo extends React.Component {
       url: url,
       titel: title,
       source: props.sources,
-      personalnummer: props.authUser.personalnummer,
+      personalnummer: personalnummer || null,
       username: props.authUser.username,
       userId: props.authUser.uid,
       createdAt: this.props.firebase.fieldValue.serverTimestamp(),
@@ -48,7 +49,7 @@ class HygieneVideo extends React.Component {
 
   render() {
     const { confirmWatched } = this
-    const { disabled } = this.state
+    const { disabled, personalnummer } = this.state
     const { handleDisabled } = this
 
     return (
@@ -60,6 +61,7 @@ class HygieneVideo extends React.Component {
             confirmWatched={confirmWatched }
             authUser={authUser}
             disabled={disabled}
+            personalnummer={personalnummer}
             handleDisabled={handleDisabled}
           />
         </div>
