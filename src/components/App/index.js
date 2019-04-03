@@ -58,11 +58,13 @@ const App = () => (
           <Route path={ROUTES.IMPRESSUM} component={ImpressumPage} />
           <Route path={ROUTES.DATENSCHUTZ} component={DatenschutzPage} />
         </Container>
-      <Hero.Foot>
-          <Container>
-          <Tab.Group as="nav" type="boxed" fullwidth>
-              <Tab as={Link} to={ROUTES.DATENSCHUTZ} >Datenschutz</Tab>
+      <Hero.Foot >
+          <Container color="success">
+          <Tab.Group as="nav" type="boxed" fullwidth size="small" kind="toggle">
+              <Tab as={Link} color="success" to={ROUTES.DATENSCHUTZ} >Datenschutz</Tab>
               <Tab as={Link} to={ROUTES.IMPRESSUM} >Impressum</Tab>
+              <Tab >&copy; 2019 - Bäckerei Münzel KG</Tab>
+    
             </Tab.Group>
             </Container>
       </Hero.Foot>

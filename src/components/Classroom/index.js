@@ -34,12 +34,13 @@ class HygieneVideo extends React.Component {
       url: url,
       titel: title,
       source: props.sources,
-      personalnummer: personalnummer || null,
+      personalnummer: personalnummer,
       username: props.authUser.username,
       userId: props.authUser.uid,
-      createdAt: this.props.firebase.fieldValue.serverTimestamp(),
+      createdAt: new Date(Date.now()),
     });
-
+    
+    this.props.history.push('/home');
     ev.preventDefault();
   }
 

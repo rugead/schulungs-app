@@ -6,11 +6,11 @@ import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
 
-import { Input, Label, Control, Help, Field, Button } from 'rbx';
+import { Input, Label, Control, Help, Field, Button, Title } from 'rbx';
 
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
+    <Title subtitle>Erstellen Sie hier persönliches Konto für  Schulungs-App der  Bäckerei Münzel</Title>
     <SignUpForm />
   </div>
 );
@@ -96,8 +96,8 @@ class SignUpFormBase extends Component {
       email,
       passwordOne,
       passwordTwo,
-      isAdmin,
-      personalnummer,
+      // isAdmin,
+      // personalnummer,
       error,
     } = this.state;
 
@@ -111,7 +111,7 @@ class SignUpFormBase extends Component {
       <form onSubmit={this.onSubmit}>
         
         <Field>
-          <Label>Label</Label>
+          <Label>Name</Label>
           <Control>
             <Input
               name="username"
@@ -122,28 +122,11 @@ class SignUpFormBase extends Component {
               autoComplete="on"
             />
           </Control>
-          <Help>This is a help text</Help>
-        </Field>
-        
-
-        <Field>
-          <Label>Label</Label>
-          <Control>
-            <Input
-              name="personalnummer"
-              value={personalnummer}
-              onChange={this.onChange}
-              type="text"
-              placeholder="Personalnummer"
-              autoComplete="on"
-            />
-          </Control>
-          <Help>This is a help text</Help>
+          <Help>Geben Sie hier bitte Ihren Vor- und Nachname ein.</Help>
         </Field>
 
-
         <Field>
-          <Label>Label</Label>
+          <Label>Email Adresse</Label>
           <Control>
             <Input
               name="email"
@@ -154,11 +137,11 @@ class SignUpFormBase extends Component {
               autoComplete="on"
             />
           </Control>
-          <Help>This is a help text</Help>
+          <Help>Geben Sie hier Ihre Email Adresse ein.</Help>
         </Field>
 
         <Field>
-          <Label>Label</Label>
+          <Label>Passwort</Label>
           <Control>
 
             <Input
@@ -170,12 +153,12 @@ class SignUpFormBase extends Component {
               autoComplete="on"
             />
           </Control>
-          <Help>This is a help text</Help>
+          <Help>Bitte geben Sie hier Ihr Passort ein.</Help>
         </Field>
 
 
         <Field>
-          <Label>Label</Label>
+          <Label>Passwortbestätigung</Label>
           <Control>
             <Input
               name="passwordTwo"
@@ -186,10 +169,10 @@ class SignUpFormBase extends Component {
               autoComplete="on"
             />
           </Control>
-          <Help>This is a help text</Help>
+          <Help>Bitte geben Sie das Passwort ernuet ein.</Help>
         </Field>
         
-        <Field>
+        {/* <Field>
           <Label>Label</Label>
           <Control>
             <Input
@@ -201,10 +184,10 @@ class SignUpFormBase extends Component {
             />
           </Control>
           <Help>This is a help text</Help>
-        </Field>
+        </Field> */}
 
         <Button disabled={isInvalid} type="submit">
-          Sign Up
+          Registrieren
         </Button>
 
         {error && <p>{error.message}</p>}

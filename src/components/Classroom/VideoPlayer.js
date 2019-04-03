@@ -9,6 +9,8 @@ export default class VideoPlayer extends React.Component {
     this.state = {
       personalnummer: ''
     };
+
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -27,6 +29,7 @@ export default class VideoPlayer extends React.Component {
   };
 
   onSubmit = ev => {
+    ev.preventDefault();
     this.props.confirmWatched(ev, this.props, this.state.personalnummer)
   }
   

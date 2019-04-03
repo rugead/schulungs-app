@@ -51,7 +51,7 @@ class SignInFormBase extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <div className="field">
-          <label className="label">Name</label>
+          <label className="label">Email Adresse</label>
           <div className="control">
             <Input
               name="email"

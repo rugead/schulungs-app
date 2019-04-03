@@ -23,7 +23,10 @@ class LessonsList extends Component {
     console.log('++++++', this.props)
     this.unsubscribe = this.props.firebase
       .lessons()
+      // .collection("lessons")
+// .orderBy("createdAt", "asc")
       .where('userId', '==', this.props.authUser.uid)
+      .orderBy("crecreatedAt", "asc")
       .onSnapshot(snapshot => {
         let lessons = [];
 
@@ -37,6 +40,24 @@ class LessonsList extends Component {
         });
       });
   }
+
+  // componentDidUpdate() {
+  //   this.unsubscribe = this.props.firebase
+  //     .lessons()
+  //     .where('userId', '==', this.props.authUser.uid)
+  //     .onSnapshot(snapshot => {
+  //       let lessons = [];
+
+  //       snapshot.forEach(doc =>
+  //         lessons.push({ ...doc.data(), uid: doc.id }),
+  //       );
+
+  //       this.setState({
+  //         lessons,
+  //         loading: false,
+  //       });
+  //     });
+  // }
 
   componentWillUnmount() {
     this.unsubscribe();
@@ -60,7 +81,7 @@ class LessonsList extends Component {
               angesehen am: 
              
                 {
-                  moment(new Date(lesson.createdAt.seconds*1000)).format(' D.MM.YYYY, hh:mm')
+                  moment(new Date(lesson.createdAt.seconds*1000)).format(' D.MM.YYYY, hh:mm') || 'heute'
                 }
             </List.Item>
           ))}
