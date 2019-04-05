@@ -153,7 +153,7 @@ class SignUpFormBase extends Component {
               autoComplete="on"
             />
           </Control>
-          <Help>Bitte geben Sie hier Ihr Passort ein.</Help>
+          <Help>Bitte geben Sie hier Ihr Passwort ein.</Help>
         </Field>
 
 
@@ -169,7 +169,7 @@ class SignUpFormBase extends Component {
               autoComplete="on"
             />
           </Control>
-          <Help>Bitte geben Sie das Passwort ernuet ein.</Help>
+          <Help>Bitte geben Sie das Passwort erneut ein.</Help>
         </Field>
         
         {/* <Field>
@@ -198,7 +198,7 @@ class SignUpFormBase extends Component {
 
 const SignUpLink = () => (
   <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+    Noch nicht registriert? Noch kein Konto? <Link to={ROUTES.SIGN_UP}>Jetzt registrieren</Link>
   </p>
 );
 

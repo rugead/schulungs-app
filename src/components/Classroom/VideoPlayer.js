@@ -18,6 +18,24 @@ export default class VideoPlayer extends React.Component {
     });
     const handleDisabled = () => this.props.handleDisabled()
     const myPlayer = videojs(this.videoNode)
+    
+    let currentTime = 0;
+    
+    myPlayer.on("seeking", function(event) {
+      if (currentTime < myPlayer.currentTime()) {
+        myPlayer.currentTime(currentTime);
+      }
+    });
+
+    myPlayer.on("seeked", function(event) {
+      if (currentTime < myPlayer.currentTime()) {
+        myPlayer.currentTime(currentTime);
+      }
+    });
+
+    myPlayer.on("playing", function(event) {
+      currentTime = myPlayer.currentTime();
+    })
   
     myPlayer.on('ended', function() {
       handleDisabled()
@@ -89,7 +107,7 @@ export default class VideoPlayer extends React.Component {
                   required
                 />
               </Control>
-              <Help>Die Personalnummer ist eine Zahl zwischen 2000 und 3999</Help>
+              <Help>Ihre Personalnummer ist eine Zahl zwischen 2000 und 3999</Help>
             </Field>
 
 

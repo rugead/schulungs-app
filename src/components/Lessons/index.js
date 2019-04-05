@@ -20,13 +20,10 @@ class LessonsList extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    console.log('++++++', this.props)
     this.unsubscribe = this.props.firebase
       .lessons()
-      // .collection("lessons")
-// .orderBy("createdAt", "asc")
       .where('userId', '==', this.props.authUser.uid)
-      .orderBy("crecreatedAt", "asc")
+      .orderBy("createdAt", "desc")
       .onSnapshot(snapshot => {
         let lessons = [];
 
@@ -41,36 +38,16 @@ class LessonsList extends Component {
       });
   }
 
-  // componentDidUpdate() {
-  //   this.unsubscribe = this.props.firebase
-  //     .lessons()
-  //     .where('userId', '==', this.props.authUser.uid)
-  //     .onSnapshot(snapshot => {
-  //       let lessons = [];
-
-  //       snapshot.forEach(doc =>
-  //         lessons.push({ ...doc.data(), uid: doc.id }),
-  //       );
-
-  //       this.setState({
-  //         lessons,
-  //         loading: false,
-  //       });
-  //     });
-  // }
-
   componentWillUnmount() {
     this.unsubscribe();
   }
 
   render() {
     const { lessons, loading } = this.state;
-    // const timestamp = lessons.createdAt;
-    // const date = timestamp.toDate();
 
     return (
       <div>
-        <Title subtitle>Sie haben bereits folgende Videos gesehen: </Title>
+        <Title subtitle>Sie haben bereits folgende Schulungen absolviert: </Title>
         {loading && <div>Loading ...</div>}
         <List>
           {lessons.map(lesson => (

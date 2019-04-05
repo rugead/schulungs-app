@@ -10,11 +10,14 @@ const videoJsOptions = {
   autoplay: false,
   controls: true,
   fluid: true,
+  preload: 'auto',
+  poster: "https://baeckerei-muenzel.de/wp-content/uploads/poster-logo.jpg",
   sources: [{
-    src: 'https://baeckerei-muenzel.de/wp-content/uploads/Guglhupf_Video.mp4',
+    src: 'https://baeckerei-muenzel.de/wp-content/uploads/schulungsfilm-personalhygiene.mp4',
     type: 'video/mp4'
   }]
 }
+ 
 
 class HygieneVideo extends React.Component {
 

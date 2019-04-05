@@ -39,14 +39,13 @@ const App = () => (
                   alt="Logo Bäckerei Münzel"
                 />
               </Navbar.Item>
-              <Navbar.Burger></Navbar.Burger>
             </Navbar.Brand>
             <Navigation />
           </Navbar>
         </Container>
       </header>
         <Container>
-          <Route exact path={ROUTES.LANDING} component={SignUpPage} />
+          <Route exact path={ROUTES.LANDING} component={SignInPage} />
           <Route path={ROUTES.CLASSROOM} component={ClassroomPage} />
           <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
           <Route path={ROUTES.SIGN_IN} component={SignInPage} />
@@ -59,9 +58,9 @@ const App = () => (
           <Route path={ROUTES.DATENSCHUTZ} component={DatenschutzPage} />
         </Container>
       <Hero.Foot >
-          <Container color="success">
+          <Container>
           <Tab.Group as="nav" type="boxed" fullwidth size="small" kind="toggle">
-              <Tab as={Link} color="success" to={ROUTES.DATENSCHUTZ} >Datenschutz</Tab>
+              <Tab as={Link} to={ROUTES.DATENSCHUTZ} >Datenschutz</Tab>
               <Tab as={Link} to={ROUTES.IMPRESSUM} >Impressum</Tab>
               <Tab >&copy; 2019 - Bäckerei Münzel KG</Tab>
     

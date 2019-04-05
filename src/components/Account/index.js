@@ -9,6 +9,8 @@ import {
 import { withFirebase } from '../Firebase';
 import PasswordChangeForm from '../PasswordChange';
 
+import { Button, Title, Input, List, Block } from 'rbx'
+import { ListItem } from 'rbx/components/list/list-item';
 
 const SIGN_IN_METHODS = [
   {
@@ -19,21 +21,21 @@ const SIGN_IN_METHODS = [
     id: 'google.com',
     provider: 'googleProvider',
   },
-  {
-    id: 'facebook.com',
-    provider: 'facebookProvider',
-  },
-  {
-    id: 'twitter.com',
-    provider: 'twitterProvider',
-  },
+  // {
+  //   id: 'facebook.com',
+  //   provider: 'facebookProvider',
+  // },
+  // {
+  //   id: 'twitter.com',
+  //   provider: 'twitterProvider',
+  // },
 ];
 
 const AccountPage = () => (
   <AuthUserContext.Consumer>
     {authUser => (
       <div>
-        <h1>Account: {authUser.email}</h1>
+        <Title>Passwort ändern für: {authUser.username}</Title>
         <PasswordChangeForm />
         <LoginManagement authUser={authUser} />
       </div>
@@ -94,9 +96,11 @@ class LoginManagementBase extends Component {
     const { activeSignInMethods, error } = this.state;
 
     return (
-      <div>
-        Sign In Methods:
-        <ul>
+      <Block>
+        <Title>
+          An- und Abmeldemöglichkeiten:
+        </Title>
+        <List>
           {SIGN_IN_METHODS.map(signInMethod => {
             const onlyOneLeft = activeSignInMethods.length === 1;
             const isEnabled = activeSignInMethods.includes(
@@ -104,7 +108,7 @@ class LoginManagementBase extends Component {
             );
 
             return (
-              <li key={signInMethod.id}>
+              <ListItem key={signInMethod.id}>
                 {signInMethod.id === 'password' ? (
                   <DefaultLoginToggle
                     onlyOneLeft={onlyOneLeft}
@@ -122,12 +126,12 @@ class LoginManagementBase extends Component {
                     onUnlink={this.onUnlink}
                   />
                 )}
-              </li>
+              </ListItem>
             );
           })}
-        </ul>
+        </List>
         {error && error.message}
-      </div>
+      </Block>
     );
   }
 }
@@ -140,20 +144,20 @@ const SocialLoginToggle = ({
   onUnlink,
 }) =>
   isEnabled ? (
-    <button
+    <Button
       type="button"
       onClick={() => onUnlink(signInMethod.id)}
       disabled={onlyOneLeft}
     >
-      Deactivate {signInMethod.id}
-    </button>
+      Mit "<strong>{signInMethod.id}</strong>" anmelden 
+    </Button>
   ) : (
-    <button
+    <Button
       type="button"
       onClick={() => onLink(signInMethod.provider)}
     >
-      Link {signInMethod.id}
-    </button>
+      Mit "<strong>{signInMethod.id}</strong>" anmelden
+    </Button>
   );
 
 class DefaultLoginToggle extends Component {
@@ -188,33 +192,35 @@ class DefaultLoginToggle extends Component {
       passwordOne !== passwordTwo || passwordOne === '';
 
     return isEnabled ? (
-      <button
+      <Button
         type="button"
         onClick={() => onUnlink(signInMethod.id)}
         disabled={onlyOneLeft}
       >
-        Deactivate {signInMethod.id}
-      </button>
+        Mit "<strong>{signInMethod.id}</strong>" deaktiviern.
+      </Button>
     ) : (
       <form onSubmit={this.onSubmit}>
-        <input
+        <Input
           name="passwordOne"
           value={passwordOne}
           onChange={this.onChange}
           type="password"
           placeholder="New Password"
+          autoComplete="password-new"
         />
-        <input
+        <Input
           name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
           type="password"
           placeholder="Confirm New Password"
+          autoComplete="password-new"
         />
 
-        <button disabled={isInvalid} type="submit">
-          Link {signInMethod.id}
-        </button>
+        <Button disabled={isInvalid} type="submit">
+          Mit "<strong>{signInMethod.id}</strong>" deaktiviern
+        </Button>
       </form>
     );
   }

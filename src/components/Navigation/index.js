@@ -7,7 +7,7 @@ import * as ROUTES from '../../constants/routes';
 
 // import * as ROLES from '../../constants/roles';
 
-import { Navbar } from 'rbx';
+import { Navbar, Content } from 'rbx';
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
@@ -25,12 +25,16 @@ const NavigationAuth = ({ authUser }) => (
   <Navbar.Menu>
     <Navbar.Segment align="end">
       <Navbar.Item dropdown>
-        <Navbar.Link>{ authUser.username}<br />Konto & Schulungen</Navbar.Link>
+        <Navbar.Link>
+          <Content size="small">
+            { authUser.username} || Konto & Schulungen
+          </Content>
+        </Navbar.Link>
         <Navbar.Dropdown>
-          <Navbar.Item as={Link} to={ROUTES.HOME}>Home</Navbar.Item>
-          <Navbar.Item as={Link} to={ROUTES.CLASSROOM}>Schulungen</Navbar.Item>
+          <Navbar.Item as={Link} to={ROUTES.HOME}>Übersicht</Navbar.Item>
+          <Navbar.Item as={Link} to={ROUTES.CLASSROOM}>Hygiene-Schulungen</Navbar.Item>
           <Navbar.Divider></Navbar.Divider>
-          <Navbar.Item as={Link} to={ROUTES.ACCOUNT}>Account</Navbar.Item>
+          <Navbar.Item as={Link} to={ROUTES.ACCOUNT}>Konto</Navbar.Item>
           <Navbar.Divider></Navbar.Divider>
           <SignOutButton />
         </Navbar.Dropdown>
@@ -44,10 +48,10 @@ const NavigationNonAuth = () => (
   <Navbar.Menu>
   <Navbar.Segment align="end">
     <Navbar.Item as={Link} to={ROUTES.SIGN_UP}>
-      Sign up
+      Registrieren
     </Navbar.Item>
     <Navbar.Item as={Link} to={ROUTES.SIGN_IN}>
-      Log In
+      Anmelden
     </Navbar.Item>
   </Navbar.Segment>
   </Navbar.Menu>
