@@ -6,11 +6,11 @@ import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
 
-import { Input, Label, Control, Help, Field, Button, Title } from 'rbx';
+import { Input, Label, Control, Help, Field, Button, Title, Box } from 'rbx';
 
 const SignUpPage = () => (
   <div>
-    <Title subtitle>Erstellen Sie hier persönliches Konto für  Schulungs-App der  Bäckerei Münzel</Title>
+    <Title>Erstellen Sie hier persönliches Konto für  Schulungs-App der  Bäckerei Münzel</Title>
     <SignUpForm />
   </div>
 );
@@ -43,7 +43,7 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne, isAdmin, personalnummer } = this.state;
+    const { username, email, passwordOne, isAdmin } = this.state;
     const roles = [];
 
     if (isAdmin) {
@@ -58,8 +58,7 @@ class SignUpFormBase extends Component {
           {
             username,
             email,
-            roles,
-            personalnummer
+            roles
           },
           { merge: true },
         );
@@ -108,9 +107,9 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        
-        <Field>
+      <Box>
+          <form onSubmit={this.onSubmit}>
+          <Field>
           <Label>Name</Label>
           <Control>
             <Input
@@ -192,6 +191,7 @@ class SignUpFormBase extends Component {
 
         {error && <p>{error.message}</p>}
       </form>
+      </Box>
     );
   }
 }

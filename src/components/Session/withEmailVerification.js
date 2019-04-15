@@ -3,6 +3,8 @@ import React from 'react';
 import AuthUserContext from './context';
 import { withFirebase } from '../Firebase';
 
+import { Button, Content, Section, Title } from 'rbx';
+
 const needsEmailVerification = authUser =>
   authUser &&
   !authUser.emailVerified &&
@@ -21,37 +23,62 @@ const withEmailVerification = Component => {
     onSendEmailVerification = () => {
       this.props.firebase
         .doSendEmailVerification()
-        .then(() => this.setState({ isSent: true }));
+        .then(() => this.setState({ isSent: true }))
+        .catch(error => {
+          this.setState({ error });
+        });
     };
 
     render() {
+      const { error} = this.state
       return (
         <AuthUserContext.Consumer>
           {authUser =>
             needsEmailVerification(authUser) ? (
-              <div>
+              <Content size="large">
                 {this.state.isSent ? (
-                  <p>
-                    E-Mail confirmation sent: Check you E-Mails (Spam
-                    folder included) for a confirmation E-Mail.
-                    Refresh this page once you confirmed your E-Mail.
+                  <p>                                                
+Bitte prüfen Sie Ihren Posteingang. Schauen gegebenenfalls auch im Spam- und Junk-Ordner nach.
+Bitte klicken Sie auf den Link in der Email und bestätigen Sie damit Ihre Registrierung.
+                    Laden Sie danach bitte diese Seite einmal neu.
                   </p>
                 ) : (
+                  <>
+
                   <p>
-                    Verify your E-Mail: Check you E-Mails (Spam folder
-                    included) for a confirmation E-Mail or send
-                    another confirmation E-Mail.
+                    Bitte verifizieren Sie Ihre Emailadresse.
                   </p>
+                  <p>
+                    Prüfen Sie Ihren Posteingang und gegebenenfalls den Spam-Ordner bezüglich der Bestätigungs-Email.
+                  </p>
+                  <p>
+                    Bitte klicken Sie auf denn Link in der Email und bestätigen Sie Ihre Registrierung.
+                  </p>
+                  <p>
+                    Danach bitte diese Seite einmal neu Laden.
+                  </p>
+                  <p>
+                    Keine Email gefunden? Dann können Sie sich jetzt die Bestätigungs-Email erneut zu senden.
+                  </p>
+                  </>
                 )}
 
-                <button
+                <Button
                   type="button"
                   onClick={this.onSendEmailVerification}
                   disabled={this.state.isSent}
+                  color="primary"
                 >
-                  Send confirmation E-Mail
-                </button>
-              </div>
+                  Bestätigungs-Email erneut zusenden
+                </Button>
+                {
+                  error && 
+                    <Section backgroundColor="danger">
+                      <Title textColor="light" as="h2" subtitle>{error.message}</Title>
+                    </Section>
+                }
+
+              </Content>
             ) : (
               <Component {...this.props} />
             )

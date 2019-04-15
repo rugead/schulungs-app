@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { compose } from 'recompose';
 // 
 import { SignUpLink } from '../SignUp';
@@ -174,7 +174,7 @@ class SignInGoogleBase extends Component {
             <Button type="submit">Sign In with Google</Button>
           </Control>
         </Field>
-        <Help>Hier können Sie sich mit Ihrem Google konto anmelden</Help>
+        <Help>Hier können Sie sich mit Ihrem Google-Konto anmelden</Help>
         {error && <p>{error.message}</p>}
       </form>
       
@@ -182,6 +182,19 @@ class SignInGoogleBase extends Component {
     );
   }
 }
+
+const SignInLink = () => (
+  <Block>
+    <Field>
+      <Label>Mit Email Adresse und Passwort anmelden</Label>
+        <Control>
+        <Button as={Link} to={ROUTES.SIGN_IN}>Jetzt anmelden</Button>
+        </Control>
+    </Field>
+    <Help>Hier können Sie sich mit Ihrer Email Adresse und Passwort vanmelden</Help>
+  </Block>
+);
+
 
 const SignInGoogle = compose(
   withRouter,
@@ -191,6 +204,6 @@ const SignInGoogle = compose(
 export default SignInPage;
 // export default SignInForm;
 
-export { SignInForm, SignInGoogle };
+export { SignInForm, SignInGoogle, SignInLink };
 
 // export { SignInForm, SignInGoogle, SignInFacebook, SignInTwitter };

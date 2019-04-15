@@ -37,7 +37,19 @@ class Firebase {
   // *** Auth API ***
 
   doCreateUserWithEmailAndPassword = (email, password) =>
-    this.auth.createUserWithEmailAndPassword(email, password);
+    this.auth.createUserWithEmailAndPassword(email, password)
+    .catch(function(error) {
+        // Handle Errors here.
+         var errorCode = error.code;
+         var errorMessage = error.message;
+         if (errorCode == 'auth/weak-password') {
+           alert('The password is too weak.');
+         } else {
+           alert(errorMessage);
+         }
+         console.log(error);
+     });
+    
 
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
@@ -57,7 +69,7 @@ class Firebase {
 
   doSendEmailVerification = () =>
     this.auth.currentUser.sendEmailVerification({
-      url: 'http://localhost:3000' //process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
+      url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
     });
 
   doPasswordUpdate = password =>
