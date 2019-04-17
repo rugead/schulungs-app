@@ -19,6 +19,7 @@ class LessonsList extends Component {
   }
 
   componentDidMount() {
+    // console.log('authUser: ', this.props.authUser.email)
     this.setState({ loading: true });
     this.unsubscribe = this.props.firebase
       .lessons()
@@ -54,7 +55,7 @@ class LessonsList extends Component {
             <List.Item key={lesson.uid}>
               Video: {lesson.titel} | 
               Personalnummer: {lesson.personalnummer} |
-              Name: {lesson.username} |
+              Name: {lesson.username || this.props.authUser.email} |
               angesehen am: 
              
                 {

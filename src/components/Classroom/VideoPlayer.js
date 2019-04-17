@@ -1,6 +1,5 @@
 import React from 'react';
 import videojs from 'video.js'
-// import { Column } from 'rbx';
 import { Column, Field, Label, Checkbox, Button, Box, Help, Control, Input } from 'rbx'
 
 export default class VideoPlayer extends React.Component {
@@ -42,8 +41,8 @@ export default class VideoPlayer extends React.Component {
     });   
   }
 
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+  onChange = ev => {
+    this.setState({ [ev.target.name]: ev.target.value });
   };
 
   onSubmit = ev => {
@@ -107,7 +106,7 @@ export default class VideoPlayer extends React.Component {
                   required
                 />
               </Control>
-              <Help>Ihre Personalnummer ist eine Zahl zwischen 2000 und 3999</Help>
+              <Help>Ihre Personalnummer finden  Sie auf Ihrer Personalkarte. Es ist eine Zahl zwischen 2000 und 3999</Help>
             </Field>
 
 

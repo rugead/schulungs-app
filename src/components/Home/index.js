@@ -40,7 +40,7 @@ class HomePage extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
           <div>
-            <Title>Willkommen {authUser.username} </Title>
+            <Title>Willkommen {authUser.username || authUser.email} </Title>
             <Lessons authUser={authUser} />
           </div>
 

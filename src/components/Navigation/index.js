@@ -27,7 +27,7 @@ const NavigationAuth = ({ authUser }) => (
       <Navbar.Item dropdown>
         <Navbar.Link>
           <Content size="small">
-            { authUser.username} || Konto & Schulungen
+            { authUser.username || authUser.email} || Konto & Schulungen
           </Content>
         </Navbar.Link>
         <Navbar.Dropdown>
@@ -43,6 +43,30 @@ const NavigationAuth = ({ authUser }) => (
   </Navbar.Menu>
 
 );
+
+
+// const NavigationAuth = ({ authUser }) => (
+//   <Navbar.Menu>
+//     <Navbar.Segment align="end">
+//       <Navbar.Item dropdown>
+//         <Navbar.Link>
+//           <Content size="small">
+//             { authUser.username || authUser.email} || Konto & Schulungen
+//           </Content>
+//         </Navbar.Link>
+//         <Navbar.Dropdown>
+//           <Navbar.Item as={Link} to={ROUTES.HOME}>Übersicht</Navbar.Item>
+//           <Navbar.Item as={Link} to={ROUTES.CLASSROOM}>Hygiene-Schulungen</Navbar.Item>
+//           <Navbar.Divider></Navbar.Divider>
+//           <Navbar.Item as={Link} to={ROUTES.ACCOUNT}>Konto</Navbar.Item>
+//           <Navbar.Divider></Navbar.Divider>
+//           <SignOutButton />
+//         </Navbar.Dropdown>
+//       </Navbar.Item>
+//     </Navbar.Segment>
+//   </Navbar.Menu>
+
+// );
 
 const NavigationNonAuth = () => (
   <Navbar.Menu>

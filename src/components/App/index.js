@@ -39,6 +39,7 @@ const App = () => (
                   alt="Logo Bäckerei Münzel"
                 />
               </Navbar.Item>
+              <Navbar.Burger />
             </Navbar.Brand>
             <Navigation />
           </Navbar>
