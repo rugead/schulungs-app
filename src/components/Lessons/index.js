@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
-
 import { List, Title } from 'rbx'
 import moment from 'moment'
 import 'moment/locale/de'  // without this line it didn't work
@@ -19,7 +18,6 @@ class LessonsList extends Component {
   }
 
   componentDidMount() {
-    // console.log('authUser: ', this.props.authUser.email)
     this.setState({ loading: true });
     this.unsubscribe = this.props.firebase
       .lessons()
@@ -56,10 +54,9 @@ class LessonsList extends Component {
               Video: {lesson.titel} | 
               Personalnummer: {lesson.personalnummer} |
               Name: {lesson.username || this.props.authUser.email} |
-              angesehen am: 
-             
+              angesehen am:            
                 {
-                  moment(new Date(lesson.createdAt.seconds*1000)).format(' D.MM.YYYY, hh:mm') || 'heute'
+                  moment(new Date(lesson.createdAt.seconds*1000)).format(' D.MM.YYYY, HH:mm') || 'heute'
                 }
             </List.Item>
           ))}

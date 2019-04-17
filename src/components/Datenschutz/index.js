@@ -1,7 +1,6 @@
 import React from 'react';
 const axios = require('axios');
 
-
 class Datenschutz extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +11,6 @@ class Datenschutz extends React.Component {
       title: null
     };
   }
-  
   
   componentDidMount() {
     axios.get('https://baeckerei-muenzel.de/wp-json/wp/v2/pages/6689')

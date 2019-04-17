@@ -1,12 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { NavLink } from 'react-router-dom'
 import { AuthUserContext } from '../Session';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
-
-// import * as ROLES from '../../constants/roles';
-
+import * as ROLES from '../../constants/roles';
 import { Navbar, Content } from 'rbx';
 
 const Navigation = () => (
@@ -36,6 +33,12 @@ const NavigationAuth = ({ authUser }) => (
           <Navbar.Divider></Navbar.Divider>
           <Navbar.Item as={Link} to={ROUTES.ACCOUNT}>Konto</Navbar.Item>
           <Navbar.Divider></Navbar.Divider>
+          {authUser.roles.includes(ROLES.ADMIN) && 
+            (
+            <Navbar.Item as={Link} to={ROUTES.ADMIN}>Admin</Navbar.Item>
+            )
+          }
+          <Navbar.Divider></Navbar.Divider>
           <SignOutButton />
         </Navbar.Dropdown>
       </Navbar.Item>
@@ -43,30 +46,6 @@ const NavigationAuth = ({ authUser }) => (
   </Navbar.Menu>
 
 );
-
-
-// const NavigationAuth = ({ authUser }) => (
-//   <Navbar.Menu>
-//     <Navbar.Segment align="end">
-//       <Navbar.Item dropdown>
-//         <Navbar.Link>
-//           <Content size="small">
-//             { authUser.username || authUser.email} || Konto & Schulungen
-//           </Content>
-//         </Navbar.Link>
-//         <Navbar.Dropdown>
-//           <Navbar.Item as={Link} to={ROUTES.HOME}>Übersicht</Navbar.Item>
-//           <Navbar.Item as={Link} to={ROUTES.CLASSROOM}>Hygiene-Schulungen</Navbar.Item>
-//           <Navbar.Divider></Navbar.Divider>
-//           <Navbar.Item as={Link} to={ROUTES.ACCOUNT}>Konto</Navbar.Item>
-//           <Navbar.Divider></Navbar.Divider>
-//           <SignOutButton />
-//         </Navbar.Dropdown>
-//       </Navbar.Item>
-//     </Navbar.Segment>
-//   </Navbar.Menu>
-
-// );
 
 const NavigationNonAuth = () => (
   <Navbar.Menu>

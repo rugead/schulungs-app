@@ -74,7 +74,6 @@ export default class VideoPlayer extends React.Component {
           </Box>
         <Box>
           <form onSubmit={this.onSubmit} >
-          {console.log(this.props)}
             <Field>
             <Label>Bestätigung</Label>
               <Label> 
