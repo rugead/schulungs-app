@@ -43,7 +43,9 @@ class Impressum extends React.Component {
         return <div>Loading...</div>;
       } else {
         return (
-          <div dangerouslySetInnerHTML={createMarkup()} />
+          <div className="legals">
+            <div dangerouslySetInnerHTML={createMarkup()} />
+          </div>
 
         );
       }

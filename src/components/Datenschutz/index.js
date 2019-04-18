@@ -1,4 +1,5 @@
 import React from 'react';
+import { Title } from 'rbx';
 const axios = require('axios');
 
 class Datenschutz extends React.Component {
@@ -46,7 +47,9 @@ class Datenschutz extends React.Component {
         return <div>Loading...</div>;
       } else {
         return (
-          <div dangerouslySetInnerHTML={createMarkup()} />
+          <div className="legals">
+            <div dangerouslySetInnerHTML={createMarkup()} />
+          </div>
 
         );
       }

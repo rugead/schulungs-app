@@ -171,19 +171,6 @@ class SignUpFormBase extends Component {
           <Help>Bitte geben Sie das Passwort erneut ein.</Help>
         </Field>
         
-        {/* <Field>
-          <Label>Label</Label>
-          <Control>
-            <Input
-              name="isAdmin"
-              type="checkbox"
-              checked={isAdmin}
-              onChange={this.onChangeCheckbox}
-              autoComplete="on"
-            />
-          </Control>
-          <Help>This is a help text</Help>
-        </Field> */}
 
         <Button disabled={isInvalid} type="submit">
           Registrieren

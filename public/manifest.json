@@ -1,11 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Bäckerei Münzel Schulungs-App",
+  "name": "Mitarbeiter Schulunungs-App der Bäckerei Konditorei Münzel KG",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "cropped-web-icon.jpg",
       "sizes": "16x16 32x32 48x48 72x72",
-      "type": "image/png"
+      "type": "image/jpg"
     }
   ],
   "start_url": "./index.html",

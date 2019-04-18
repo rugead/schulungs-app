@@ -136,10 +136,11 @@ class SignInGoogleBase extends Component {
     this.props.firebase
       .doSignInWithGoogle()
       .then(socialAuthUser => {
+        // console.log('socialAuthUser: ', socialAuthUser);
         // Create a user in your Firebase Realtime Database too
         return this.props.firebase.user(socialAuthUser.user.uid).set(
           {
-            username: socialAuthUser.user.displayName,
+            username: socialAuthUser.additionalUserInfo.profile.name,
             email: socialAuthUser.user.email,
             roles: [],
           },
@@ -191,7 +192,7 @@ const SignInLink = () => (
         <Button as={Link} to={ROUTES.SIGN_IN}>Jetzt anmelden</Button>
         </Control>
     </Field>
-    <Help>Hier können Sie sich mit Ihrer Email Adresse und Passwort vanmelden</Help>
+    <Help>Hier können Sie sich mit Ihrer Email Adresse und Passwort anmelden</Help>
   </Block>
 );
 

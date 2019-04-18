@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
-import { Button, Input} from 'rbx'
+import { Button, Input, Field, Label, Control, Box} from 'rbx'
 
 const INITIAL_STATE = {
   passwordOne: '',
@@ -42,29 +42,40 @@ class PasswordChangeForm extends Component {
       passwordOne !== passwordTwo || passwordOne === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <Input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Neues Passwort"
-          autoComplete="password-new"
-        />
-        <Input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Neues Passwort - Bestätigung "
-          autoComplete="password-new"
-        />
-        <Button disabled={isInvalid} type="submit">
-          Passwort ändern
-        </Button>
+      <Box>
+        <form onSubmit={this.onSubmit}>
+          <Field>
+            <Label> Passwort ändern für: {this.props.authUser.username}</Label>
+            <Control>
+              <Input
+                name="passwordOne"
+                value={passwordOne}
+                onChange={this.onChange}
+                type="password"
+                placeholder="Neues Passwort"
+                autoComplete="password-new"
+              />
+              <Input
+                name="passwordTwo"
+                value={passwordTwo}
+                onChange={this.onChange}
+                type="password"
+                placeholder="Neues Passwort bestätigen"
+                autoComplete="password-new"
+              />
+            </Control>
+          </Field>
+          <Button 
+            disabled={isInvalid} 
+            type="submit"
+            color="primary"
+          >
+            Passwort ändern
+          </Button>
 
-        {error && <p>{error.message}</p>}
-      </form>
+          {error && <p>{error.message}</p>}
+        </form>
+      </Box>
     );
   }
 }

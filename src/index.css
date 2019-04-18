@@ -4,3 +4,21 @@
 .navbar-brand {
   margin-bottom: 0.5rem;
 }
+
+.legals h4, .legals h5, .legals h2 {
+  padding: 1rem;
+  font-weight: 800;
+  color: rgb(248,165,0);
+  font-family: "Courgette";
+  font-size: 150%;
+}
+
+.legals p, .legals li {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+div .x-text {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
