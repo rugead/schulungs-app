@@ -30,19 +30,35 @@ class HygieneVideo extends React.Component {
   }
     
   confirmWatched = (ev, props, personalnummer) => {
+    // console.log('props: ', props);
     const url = props.sources[0].src
     const title = url.substr(url.lastIndexOf('/') + 1);
-    
+
     this.props.firebase.lessons().add({
       url: url,
-      titel: title,
+      title: title,
       source: props.sources,
       personalnummer: personalnummer,
       username: props.authUser.username,
       userId: props.authUser.uid,
       createdAt: new Date(Date.now()),
     });
-    
+
+    this.props.firebase.user(props.authUser.uid).update(
+      {
+        lessons: this.props.firebase.fieldValue.arrayUnion({
+          url: url,
+          title: title,
+          source: props.sources,
+          personalnummer: personalnummer,
+          username: props.authUser.username,
+          userId: props.authUser.uid,
+          createdAt: new Date(Date.now()),
+        })
+      },
+    );
+      
+    console.log('authUser.user: ', this.props.firebase);
     this.props.history.push('/home');
     ev.preventDefault();
   }

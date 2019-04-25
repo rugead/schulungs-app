@@ -1,5 +1,4 @@
 import React from 'react';
-import { Title } from 'rbx';
 const axios = require('axios');
 
 class Datenschutz extends React.Component {

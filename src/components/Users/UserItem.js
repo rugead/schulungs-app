@@ -57,6 +57,11 @@ class UserItem extends Component {
             <span>
               <strong>Username:</strong> {user.username}
             </span>
+            
+            <ul>
+              {user.lessons && user.lessons.map((lesson, index) => <li key={index}>{lesson.title}</li>)}
+            </ul>
+
             <span>
               <button
                 type="button"
