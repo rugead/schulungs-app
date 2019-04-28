@@ -51,7 +51,7 @@ class LessonsList extends Component {
         <List>
           {lessons.map(lesson => (
             <List.Item key={lesson.uid}>
-              Video: {lesson.titel} | 
+              Video: {lesson.title} | 
               Personalnummer: {lesson.personalnummer} |
               Name: {lesson.username || this.props.authUser.email} |
               angesehen am:            
