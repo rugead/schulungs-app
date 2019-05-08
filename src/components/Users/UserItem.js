@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
+import moment from 'moment'
+import 'moment/locale/de'  // without this line it didn't work
+moment.locale('de')
 
 class UserItem extends Component {
   constructor(props) {
@@ -59,7 +62,7 @@ class UserItem extends Component {
             </span>
             
             <ul>
-              {user.lessons && user.lessons.map((lesson, index) => <li key={index}>{lesson.title}</li>)}
+              {user.lessons && user.lessons.map((lesson, index) => <li key={index}>{lesson.title} { moment(new Date(lesson.createdAt.seconds*1000)).format(' D.MM.YYYY, HH:mm') || 'x'} </li>)}
             </ul>
 
             <span>

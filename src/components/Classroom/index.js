@@ -33,8 +33,7 @@ class HygieneVideo extends React.Component {
     // console.log('props: ', props);
     const url = props.sources[0].src
     const title = url.substr(url.lastIndexOf('/') + 1);
-
-    this.props.firebase.lessons().add({
+    const lessonProps = {
       url: url,
       title: title,
       source: props.sources,
@@ -42,23 +41,17 @@ class HygieneVideo extends React.Component {
       username: props.authUser.username,
       userId: props.authUser.uid,
       createdAt: new Date(Date.now()),
-    });
+    };
+
+    this.props.firebase.lessons().add(lessonProps);
 
     this.props.firebase.user(props.authUser.uid).update(
       {
-        lessons: this.props.firebase.fieldValue.arrayUnion({
-          url: url,
-          title: title,
-          source: props.sources,
-          personalnummer: personalnummer,
-          username: props.authUser.username,
-          userId: props.authUser.uid,
-          createdAt: new Date(Date.now()),
-        })
+        lessons: this.props.firebase.fieldValue.arrayUnion(lessonProps)
       },
     );
       
-    console.log('authUser.user: ', this.props.firebase);
+    // console.log('authUser.user: ', this.props.firebase);
     this.props.history.push('/home');
     ev.preventDefault();
   }

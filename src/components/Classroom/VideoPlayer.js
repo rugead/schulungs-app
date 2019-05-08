@@ -18,24 +18,28 @@ export default class VideoPlayer extends React.Component {
     const handleDisabled = () => this.props.handleDisabled()
     const myPlayer = videojs(this.videoNode)
     
-    let currentTime = 0;
+    /* start
+
+    // let currentTime = 0;
     
-    myPlayer.on("seeking", function(event) {
-      if (currentTime < myPlayer.currentTime()) {
-        myPlayer.currentTime(currentTime);
-      }
-    });
+    // myPlayer.on("seeking", function(event) {
+    //   if (currentTime < myPlayer.currentTime()) {
+    //     myPlayer.currentTime(currentTime);
+    //   }
+    // });
 
-    myPlayer.on("seeked", function(event) {
-      if (currentTime < myPlayer.currentTime()) {
-        myPlayer.currentTime(currentTime);
-      }
-    });
+    // myPlayer.on("seeked", function(event) {
+    //   if (currentTime < myPlayer.currentTime()) {
+    //     myPlayer.currentTime(currentTime);
+    //   }
+    // });
 
-    myPlayer.on("playing", function(event) {
-      currentTime = myPlayer.currentTime();
-    })
-  
+    // myPlayer.on("playing", function(event) {
+    //   currentTime = myPlayer.currentTime();
+    // })
+    
+    end */
+
     myPlayer.on('ended', function() {
       handleDisabled()
     });   
