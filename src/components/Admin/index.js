@@ -4,13 +4,14 @@ import { compose } from 'recompose';
 
 import { withAuthorization, withEmailVerification } from '../Session';
 import { UserList, UserItem } from '../Users';
+import AdminLessons from '../Lessons/AdminLessons.js';
 import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
 
 const AdminPage = () => (
   <div>
-    <h1>Admin Page</h1>
     <Switch>
+      <Route exact path={ROUTES.ADMIN_LESSONS} component={AdminLessons} />
       <Route exact path={ROUTES.ADMIN_DETAILS} component={UserItem} />
       <Route exact path={ROUTES.ADMIN} component={UserList} />
     </Switch>
