@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import { Input } from 'rbx';
-import { Les } from './Les';
+import { PrintLessons } from './PrintLessons.js';
 import moment from 'moment'
 import 'moment/locale/de'  // without this line it didn't work
 moment.locale('de')
@@ -58,7 +58,7 @@ class AdminLessons extends Component {
       <div>
         {loading && <div>Loading ...</div>}
         <Input type="text" size="medium" value={this.state.search} placeholder="Suche nach Namen oder Personalnummer" color="primary" onChange={this.updateSearch} />
-        <Les lessons={filteredLessons} />
+        <PrintLessons lessons={filteredLessons} />
       </div>
     );
   }

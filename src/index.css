@@ -23,13 +23,11 @@ div .x-text {
   padding-bottom: 0.5rem;
 }
 
-
 .bodyclass {
   padding-top: 2cm;
   padding-left: 2cm;
   padding-right: 1cm; 
 }
-
 
 .bodyclass .logo {
   background-image: url("./components/App/logo.jpg");
@@ -37,5 +35,4 @@ div .x-text {
   background-position-x: 0px;
   background-position-y: 0px;
   height: 300px;
-  /* ./logo.jpg */
 }
