@@ -42,7 +42,7 @@ class Firebase {
         // Handle Errors here.
          var errorCode = error.code;
          var errorMessage = error.message;
-         if (errorCode == 'auth/weak-password') {
+         if (errorCode === 'auth/weak-password') {
            alert('Das Passwort ist zu einfach/schwach!');
          } else {
            alert(errorMessage);

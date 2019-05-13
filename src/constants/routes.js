@@ -11,3 +11,4 @@ export const CLASSROOM = '/classroom';
 export const LESSONS = '/lessons';
 export const DATENSCHUTZ = '/datenschutz';
 export const IMPRESSUM = '/impressum';
+export const PRINT_LESSONS = '/print-lessons';

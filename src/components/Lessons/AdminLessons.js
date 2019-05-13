@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
-import { Input, Table } from 'rbx'
+import { Input } from 'rbx';
+import { Les } from './Les';
 import moment from 'moment'
 import 'moment/locale/de'  // without this line it didn't work
 moment.locale('de')
-
-
 
 class AdminLessons extends Component {
   constructor(props) {
@@ -52,41 +51,18 @@ class AdminLessons extends Component {
     // const sortByPersonalnummerAsc = (a,b) => b.personalnummer - a.personalnummer
 
     let filteredLessons = lessons
-                            .filter(lesson => lesson.username.concat(lesson.personalnummer).toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-                            // .sort(sortByDateAsc)
+      .filter(lesson => lesson.username.concat(lesson.personalnummer).toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+      .sort(sortByDateAsc)
 
     return (
       <div>
         {loading && <div>Loading ...</div>}
         <Input type="text" size="medium" value={this.state.search} placeholder="Suche nach Namen oder Personalnummer" color="primary" onChange={this.updateSearch} />
-        <Table>
-          <Table.Head>
-            <Table.Row>
-              <Table.Heading>Personalnummer</Table.Heading>
-              <Table.Heading>Name</Table.Heading>
-              <Table.Heading>Video</Table.Heading>
-              <Table.Heading>angesehen am</Table.Heading>
-            </Table.Row>
-          </Table.Head>
-          
-          <Table.Body>
-            {filteredLessons.map(lesson => (
-            <Table.Row key={lesson.uid}>
-              <Table.Cell>{lesson.personalnummer}</Table.Cell>
-              <Table.Cell>{lesson.username || this.props.authUser.email}</Table.Cell>
-              <Table.Cell>{lesson.title}</Table.Cell>
-              <Table.Cell>
-                {
-                  moment(new Date(lesson.createdAt.seconds*1000)).format(' D.MM.YYYY, HH:mm') || 'heute'
-                }
-              </Table.Cell>
-            </Table.Row>          
-            ))}
-          </Table.Body>
-        </Table>  
+        <Les lessons={filteredLessons} />
       </div>
     );
   }
 }
+
 
 export default withFirebase(AdminLessons);

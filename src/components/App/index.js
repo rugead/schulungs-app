@@ -14,6 +14,7 @@ import ClassroomPage from '../Classroom';
 import LessonsPage from '../Lessons';
 import DatenschutzPage from '../Datenschutz';
 import ImpressumPage from '../Impressum';
+import PrintLessonsPage from '../Lessons/PrintLessons';
 
 import logo from './logo.jpg';
 
@@ -57,6 +58,7 @@ const App = () => (
           <Route path={ROUTES.LESSONS} component={LessonsPage} />
           <Route path={ROUTES.IMPRESSUM} component={ImpressumPage} />
           <Route path={ROUTES.DATENSCHUTZ} component={DatenschutzPage} />
+          <Route path={ROUTES.PRINT_LESSONS} component={PrintLessonsPage} />
         </Container>
       <Hero.Foot >
           <Container>
