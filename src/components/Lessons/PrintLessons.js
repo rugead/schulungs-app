@@ -19,31 +19,41 @@ componentDidMount() {
     return (
         <div>
           <div className='logo'></div>
-        <Table>
-          <Table.Head>
-            <Table.Row>
-              <Table.Heading>Personalnummer</Table.Heading>
-              <Table.Heading>Name</Table.Heading>
-              <Table.Heading>Video</Table.Heading>
-              <Table.Heading>angesehen am</Table.Heading>
-            </Table.Row>
-          </Table.Head>
-          
-          <Table.Body>
-          {lessons.map(lesson => (
-            <Table.Row key={lesson.uid}>
-              <Table.Cell>{lesson.personalnummer}</Table.Cell>
-              <Table.Cell>{lesson.username || this.props.authUser.email}</Table.Cell>
-              <Table.Cell>{lesson.title}</Table.Cell>
-              <Table.Cell>
-                {
-                  moment(new Date(lesson.createdAt.seconds*1000)).format(' D.MM.YYYY, HH:mm') || 'heute'
-                }
-              </Table.Cell>
-            </Table.Row>          
-            ))}
-          </Table.Body>
-        </Table>  
+          <Table>
+            <Table.Head>
+              <Table.Row>
+                <Table.Heading>Personalnummer</Table.Heading>
+                <Table.Heading>Name</Table.Heading>
+                <Table.Heading>Video</Table.Heading>
+                <Table.Heading>angesehen am</Table.Heading>
+              </Table.Row>
+            </Table.Head>
+            
+            <Table.Body>
+            {lessons.map(lesson => (
+              <Table.Row key={lesson.uid}>
+                <Table.Cell>{lesson.personalnummer}</Table.Cell>
+                <Table.Cell>{lesson.username || this.props.authUser.email}</Table.Cell>
+                <Table.Cell>{lesson.title}</Table.Cell>
+                <Table.Cell>
+                  {
+                    moment(new Date(lesson.createdAt.seconds*1000)).format(' D.MM.YYYY, HH:mm') || 'heute'
+                  }
+                </Table.Cell>
+              </Table.Row>          
+              ))}
+            </Table.Body>
+          </Table>  
+          <div>
+          <strong>
+            Teilnehmerliste Hyhgieneschulung vom {moment().format(' D.MM.YYYY, HH:mm') || 'heute'}        
+          </strong>
+          </div>
+          <div>
+          <strong>
+            Bitte im Filialordner aufbewahren.
+          </strong>
+          </div>
         </div>
     );
   }
@@ -55,7 +65,7 @@ class PrintLessons extends React.Component {
         this.state = {};
     }
     componentDidMount() {
-        console.log('Les: ', this.props.lessons)
+        // console.log('Les: ', this.props.lessons)
     }
 
   render() {
